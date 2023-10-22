@@ -18,7 +18,7 @@ object ListenerJoin {
 
         submit(async = true) {
             // 缓存玩家头颅备用
-            Heads.getPlayerHead(player.name)
+//            Heads.getPlayerHead(player.name)
             // 加载 Metadata - Data 数据
             Metadata.loadData(player)
         }

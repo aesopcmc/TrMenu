@@ -37,14 +37,15 @@ object Heads {
     }
 
     fun getHead(id: String): ItemStack {
-        return if (id.length > 20) getCustomTextureHead(id) else getPlayerHead(id)
+        return getPlayerHead(id)
+//        return if (id.length > 20) getCustomTextureHead(id) else getPlayerHead(id)
     }
 
     fun getPlayerHead(name: String): ItemStack {
         if (CACHED_SKULLS.containsKey(name)) {
             return CACHED_SKULLS[name] ?: DEFAULT_HEAD
         } else {
-            CACHED_SKULLS[name] = DEFAULT_HEAD.clone().also { item -> playerTexture(name) { modifyTexture(it, item) } ?: return DEFAULT_HEAD }
+//            CACHED_SKULLS[name] = DEFAULT_HEAD.clone().also { item -> playerTexture(name) { modifyTexture(it, item) } ?: return DEFAULT_HEAD }
             return CACHED_SKULLS[name] ?: DEFAULT_HEAD
         }
     }
@@ -73,17 +74,18 @@ object Heads {
      */
     private fun playerTexture(name: String, block: (String) -> Unit): Unit? {
         when {
-            HookPlugin.getSkinsRestorer().isHooked -> {
-                HookPlugin.getSkinsRestorer().getPlayerSkinTexture(name)?.also(block) ?: return null
-            }
+//            HookPlugin.getSkinsRestorer().isHooked -> {
+//                HookPlugin.getSkinsRestorer().getPlayerSkinTexture(name)?.also(block) ?: return null
+//            }
             Bukkit.getPlayer(name)?.isOnline == true -> {
-                Bukkit.getPlayer(name)!!.invokeMethod<GameProfile>("getProfile")?.properties?.get("textures")
-                    ?.find { it.value != null }?.value
-                    ?.also(block)
-                    ?: return null
-
-            }
-            else -> {
+//                Bukkit.getPlayer(name)!!.invokeMethod<GameProfile>("getProfile")?.properties?.get("textures")
+//                    ?.find { it.value != null }?.value
+//                    ?.also(block)
+//                    ?: return null
+//
+//            }
+//            else ->
+//            {
                 submit(async = true) {
                     val profile = JsonParser().parse(fromURL("${MOJANG_API[0]}$name")) as? JsonObject
                     if (profile == null) {

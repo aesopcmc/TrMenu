@@ -51,9 +51,9 @@ object HookPlugin {
         return get(HookPlayerPoints::class.java)
     }
 
-    fun getSkinsRestorer(): HookSkinsRestorer {
-        return get(HookSkinsRestorer::class.java)
-    }
+//    fun getSkinsRestorer(): HookSkinsRestorer {
+//        return get(HookSkinsRestorer::class.java)
+//    }
 
     fun getItemsAdder(): HookItemsAdder {
         return get(HookItemsAdder::class.java)
